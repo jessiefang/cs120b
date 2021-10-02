@@ -15,37 +15,33 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
 	DDRA = 0x00;  PORTA = 0xFF;
-	DDRB = 0xFF;  PORTB = 0x00;
-	DDRC = 0xFF;  PORTC = 0x00;
+	DDRB = 0x00;  PORTB = 0xFF;
+	DDRC = 0x00;  PORTC = 0xFF;
+	DDRD = 0xFF;  PORTD = 0x00;
+
 
 	unsigned char tmpB = 0x00;
 	unsigned char tmpA = 0x00;
 	unsigned char tmpC = 0x00;
 	unsigned char tmpD = 0x00;
+	unsigned char total = 0x00;
+
     /* Insert your solution below */
     while (1) {
-	unsigned char cntavail = 4;
-	tmpA = PINA & 0x01;
-	tmpB = PINA & 0x02;
-	tmpC = PINA & 0x04;
-	tmpD = PINA & 0x08;
-	if (tmpA == 0x01) {
-		cntavail--;
+	tmpA = PINA;
+	tmpB = PINB;
+	tmpC = PINC;
+	tmpD = 0x00;
+	if ((tmpA + tmpB + tmpC) >0x8C) {
+		tmpD = tmpD | 0x01;
 	} 
-	if (tmpB == 0x02){
-		cntavail--;
+	if (((tmpA - tmpC) > 0x50) | ((tmpC - tmpA) > 0x50)){
+		tmpD = tmpD | 0x02;
 	}
-	if (tmpC == 0x04) {
-                cntavail--;
-        }
-	if (tmpD == 0x08) {
-                cntavail--;
-        }
-	PORTC = cntavail;
-	if(cntavail == 0x00){
-		PORTC = PORTC | 0x80;
-	}
-
+	
+	total = tmpA + tmpB + tmpC;
+	tmpD = (total & 0xFC) | tmpD;
+	PORTD = tmpD;
     }
     return 0;
 }
