@@ -32,10 +32,10 @@ int main(void) {
 	tmpB = PINB;
 	tmpC = PINC;
 	tmpD = 0x00;
-	if ((tmpA + tmpB + tmpC) >140) {
+	if ((tmpA + tmpB + tmpC) >0x8C) {
 		tmpD = tmpD | 0x01;
 	} 
-	if (((tmpA - tmpC) > 80) | ((tmpC - tmpA) > 80)){
+	if (((tmpA - tmpC) > 0x50) | ((tmpC - tmpA) > 0x50)){
 		tmpD = tmpD | 0x02;
 	}
 	
