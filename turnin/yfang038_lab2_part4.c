@@ -1,7 +1,7 @@
 /*	Author: yfang038
  *  Partner(s) Name: none
  *	Lab Section:021
- *	Assignment: Lab #2  Exercise #4
+ *	Assignment: Lab #2  Exercise #3
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -17,14 +17,14 @@ int main(void) {
 	DDRA = 0x00;  PORTA = 0xFF;
 	DDRB = 0x00;  PORTB = 0xFF;
 	DDRC = 0x00;  PORTC = 0xFF;
-	DDRD = 0xFF;  PORTD = 0x00;	
+	DDRD = 0xFF;  PORTD = 0x00;
+
 
 	unsigned char tmpB = 0x00;
 	unsigned char tmpA = 0x00;
 	unsigned char tmpC = 0x00;
 	unsigned char tmpD = 0x00;
 	unsigned char total = 0x00;
-
 
     /* Insert your solution below */
     while (1) {
@@ -40,9 +40,9 @@ int main(void) {
 	}
 	
 	total = tmpA + tmpB + tmpC;
+	total = total >> 2;
 	tmpD = (total & 0xFC) | tmpD;
 	PORTD = tmpD;
-
     }
     return 0;
 }
