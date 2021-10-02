@@ -40,6 +40,7 @@ int main(void) {
 	}
 	
 	total = tmpA + tmpB + tmpC;
+	total = total >> 2;
 	tmpD = (total & 0xFC) | tmpD;
 	PORTD = tmpD;
     }
